@@ -18,15 +18,17 @@ public class DropDownHandler : MonoBehaviour
 
     //UI
     public GameObject confirmationPanel;
+    public TextMeshProUGUI confirmText;
 
     //Lists
-    List<string> dayNames = new List<string>() { "Plase select day","1", "2", "3", "4", "5", "6", "7", "8","9","10" };
-    List<string> monthNames = new List<string>() { "Plase select month", "jun","feb","march","april", "may" };
-    List<string> yearNames = new List<string>() { "Plase select year", "2010", "2016", "2036", "300" };
+    List<string> dayNames = new List<string>() { "Plase select day","1", "5", "10", "15", "20", "25", "30", "35", "40"};
+    List<string> monthNames = new List<string>() { "Plase select month", "january","february", "mes40", "march","april", "may","spookymonth","mes40" };
+    List<string> yearNames = new List<string>() { "Plase select year", "02", "-14", "2010", "2016", "2036", "300"};
 
     //son años bisiestos aquellos divisibles por 4
     //tener en cuenta la fecha de febrero!!
 
+    ///he puesto nombre y nuemeros raros usarlos como ejemplos a la hora de hacer la comapración de la fecha valida o no
 
     /* public void Dropdown_IndexChanged(int index)   
      {
@@ -47,7 +49,7 @@ public class DropDownHandler : MonoBehaviour
              yearSelectedName.color = Color.white;
          }
 
-     } */  //solucioné este código porque me hacia movidas raísimas
+     } */  //solucioné este código porque me hacia movidas raísimas, el bueno el de abajo
 
     //UI display, show if is chose or not
    public void DayDropdown_IndexChanged(int index)
@@ -96,13 +98,20 @@ public class DropDownHandler : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return)) //The enter calculates the valid date and takes you to the confirmation panel
         {
             SelectedText();
             confirmationPanel.SetActive(true);
+            //confirmText.text = "esto es una prueba lol";
+        
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)) //disable the panel
+        {
+            confirmationPanel.SetActive(false);
         }
     }
-
+    //add the elements to each list
     public void DaysList()
     {       
         dayDropDown.AddOptions(dayNames);
@@ -116,13 +125,30 @@ public class DropDownHandler : MonoBehaviour
        yearDropDown.AddOptions(yearNames);
     }
 
+
+    public string dayDropDownOptions; //varaible para englobar el options de abajo
+
     public void SelectedText()
     {
-      ///CONSEGUIR QUE ME LO MUESTRE EN PANTALLA
+        dayDropDownOptions = (dayDropDown.options[dayDropDown.value].text);
+        confirmText.text = "You date is valid (example)";
+
+        ///CONSEGUIR QUE ME LO MUESTRE EN PANTALLA
         Debug.Log(dayDropDown.options[dayDropDown.value].text);
         Debug.Log(monthDropDown.options[monthDropDown.value].text);
         Debug.Log(yearDropDown.options[yearDropDown.value].text);
     }
+
+    /*public string dayDropDownOptions;
+    private void isValid(string string)
+    {
+        dayDropDownOptions = (dayDropDown.options[dayDropDown.value].text);
+        if ((dayDropDownOptions != "35" && "40") )
+        {
+
+        }
+    }*/ //como consigo que me identifique la variable dayDropDownOptions para así poder leer el elemento seleccionado
+
     /*private bool isValid()  //booleano que leerla los elementos asignados y dira si es valido o no
     {
          if(result == 0)
