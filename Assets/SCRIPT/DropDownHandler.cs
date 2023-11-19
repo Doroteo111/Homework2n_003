@@ -109,10 +109,10 @@ public class DropDownHandler : MonoBehaviour
 
     public void SelectedText()
     {
-        //Debug.Log(monthDropDown.value);
-        //Debug.Log((dayDropDown.value),(monthDropDown.value),(yearDropDown.value));
-         Debug.Log(dayDropDown.value);
-         Debug.Log(yearDropDown.value);
+      //CONSEGUIR QUE ME LO MUESTRE EN PANTALLA
+        Debug.Log(dayDropDown.options[dayDropDown.value].text);
+        Debug.Log(monthDropDown.options[monthDropDown.value].text);
+        Debug.Log(yearDropDown.options[yearDropDown.value].text);
     }
     /*private bool isValid()
     {
