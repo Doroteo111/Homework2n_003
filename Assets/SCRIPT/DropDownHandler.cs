@@ -16,6 +16,9 @@ public class DropDownHandler : MonoBehaviour
     public TMP_Text monthSelectedName;
     public TMP_Text yearSelectedName;
 
+    //UI
+    public GameObject confirmationPanel;
+
     //Lists
     List<string> dayNames = new List<string>() { "Plase select day","1", "2", "3", "4", "5", "6", "7", "8","9","10" };
     List<string> monthNames = new List<string>() { "Plase select month", "jun","feb","march","april", "may" };
@@ -80,6 +83,11 @@ public class DropDownHandler : MonoBehaviour
             yearSelectedName.color = Color.white;
         }
     }
+
+    public void Awake()
+    {
+        confirmationPanel.SetActive(false);
+    }
     public void Start()
     {   
         DaysList();
@@ -91,6 +99,7 @@ public class DropDownHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             SelectedText();
+            confirmationPanel.SetActive(true);
         }
     }
 
@@ -109,12 +118,12 @@ public class DropDownHandler : MonoBehaviour
 
     public void SelectedText()
     {
-      //CONSEGUIR QUE ME LO MUESTRE EN PANTALLA
+      ///CONSEGUIR QUE ME LO MUESTRE EN PANTALLA
         Debug.Log(dayDropDown.options[dayDropDown.value].text);
         Debug.Log(monthDropDown.options[monthDropDown.value].text);
         Debug.Log(yearDropDown.options[yearDropDown.value].text);
     }
-    /*private bool isValid()
+    /*private bool isValid()  //booleano que leerla los elementos asignados y dira si es valido o no
     {
          if(result == 0)
         {
@@ -126,9 +135,7 @@ public class DropDownHandler : MonoBehaviour
         {
             Debug.Log("This date is not valid");
             return false;
-    }*/
+    }*////string to bool no funciona
 
-    ///NOTAS --> al parecer los dropDown solo aceptan strings, los ints no van
-    ///al hacer el debug solo me pilla el primer dropdown, aún así, si especifico cual de los 3
-  
+       ///NOTAS --> al parecer los dropDown solo aceptan strings, los ints no va
 }
